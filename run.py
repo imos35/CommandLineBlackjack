@@ -38,11 +38,59 @@ def calculate_hand_value(hand):
             total -= 10
     return total
 
-def format_hand(hand):
+
+#def format_hand(hand):
+#    """
+#    Formats a hand for display as a readable string.
+#    """
+#    return "\n  - " + "\n  - ".join(f"{value} of {suit}" for value, suit in hand)
+
+
+def ascii_card(value, suit):
     """
-    Formats a hand for display as a readable string.
+    Generates an ASCII representation of a card.
     """
-    return "\n  - " + "\n  - ".join(f"{value} of {suit}" for value, suit in hand)
+    # Map suits to their symbols
+    suit_symbols = {
+        'Hearts': '♥',
+        'Diamonds': '♦',
+        'Clubs': '♣',
+        'Spades': '♠'
+    }
+    
+    # Convert values like 11 to 'A' for Ace
+    if value == 11:
+        value = 'A'
+    elif value == 10:
+        value = '10'
+    elif value == 12:
+        value = 'J'
+    elif value == 13:
+        value = 'Q'
+    elif value == 14:
+        value = 'K'
+
+    # Card template
+    top = " _____ "
+    middle = f"|{str(value):<2}   |"
+    center = f"|  {suit_symbols[suit]}  |"
+    bottom = f"|   {str(value):>2}|"
+    base = " ----- "
+
+    return "\n".join([top, middle, center, bottom, base])
+
+def ascii_hand(hand):
+    """
+    Generates ASCII art for a hand of cards.
+    """
+    # Generate ASCII art for each card
+    ascii_cards = [ascii_card(value, suit).split("\n") for value, suit in hand]
+
+    # Combine rows from each card
+    combined = ["".join(card_row) for card_row in zip(*ascii_cards)]
+
+    return "\n".join(combined)
+
 
 def play_blackjack():
     """
@@ -51,7 +99,7 @@ def play_blackjack():
     deck, players_hand, dealers_hand = shuffle_and_deal()
 
     while calculate_hand_value(players_hand) < 21:
-        print(f"Your Hand:{format_hand(players_hand)}\nTotal: {calculate_hand_value(players_hand)}")
+        print(f"Your Hand:\n{ascii_hand(players_hand)}\nTotal: {calculate_hand_value(players_hand)}")
 
         hit_or_stand = input("Do you want to Hit or Stand? ").lower()
 
@@ -68,8 +116,9 @@ def play_blackjack():
     players_total = calculate_hand_value(players_hand)
     dealers_total = calculate_hand_value(dealers_hand)
 
-    print(f"Dealer's Hand:{format_hand(dealers_hand)}\nTotal: {dealers_total}")
-    print(f"Your Hand:{format_hand(players_hand)}\nTotal: {players_total}")
+    print(f"Dealer's Hand:\n{ascii_hand(dealers_hand)}\nTotal: {dealers_total}")
+    print(f"Your Hand:\n{ascii_hand(players_hand)}\nTotal: {players_total}")
+
 
     """
     Checks if players win or lose.
