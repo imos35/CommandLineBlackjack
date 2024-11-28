@@ -125,12 +125,16 @@ def play_blackjack():
     """
     if players_total > 21:
         print("You bust! Dealer wins.")
+        play_blackjack()
     elif dealers_total > 21 or players_total > dealers_total:
         print("You win!")
+        play_blackjack()
     elif players_total < dealers_total:
         print("Dealer wins!")
+        play_blackjack()
     else:
         print("It's a tie!")
+        play_blackjack()
 
 
 play_blackjack()
