@@ -99,16 +99,16 @@ def play_blackjack():
     deck, players_hand, dealers_hand = shuffle_and_deal()
 
     while calculate_hand_value(players_hand) < 21:
-        print(f"Your Hand:\n{ascii_hand(players_hand)}\nTotal: {calculate_hand_value(players_hand)}")
+        print(f"Your Hand:\n{ascii_hand(players_hand)}\nTotal: {calculate_hand_value(players_hand)}\n")
 
-        hit_or_stand = input("Do you want to Hit or Stand? ").lower()
+        hit_or_stand = input("Do you want to Hit or Stand?\n").lower()
 
         if hit_or_stand == 'hit':
             players_hand.append(deal_cards(deck))
         elif hit_or_stand == 'stand':
             break
         else:
-            print("Invalid input! Please type 'Hit' or 'Stand'.")
+            print("Invalid input! Please type 'Hit' or 'Stand'.\n")
 
     while calculate_hand_value(dealers_hand) < 17:
         dealers_hand.append(deal_cards(deck))
@@ -116,24 +116,24 @@ def play_blackjack():
     players_total = calculate_hand_value(players_hand)
     dealers_total = calculate_hand_value(dealers_hand)
 
-    print(f"Dealer's Hand:\n{ascii_hand(dealers_hand)}\nTotal: {dealers_total}")
-    print(f"Your Hand:\n{ascii_hand(players_hand)}\nTotal: {players_total}")
+    print(f"Dealer's Hand:\n{ascii_hand(dealers_hand)}\nTotal: {dealers_total} \n")
+    print(f"Your Hand:\n{ascii_hand(players_hand)}\nTotal: {players_total} \n")
 
 
     """
     Checks if players win or lose.
     """
     if players_total > 21:
-        print("You bust! Dealer wins.")
+        print("You bust! Dealer wins.\n")
         play_blackjack()
     elif dealers_total > 21 or players_total > dealers_total:
-        print("You win!")
+        print("You win!\n")
         play_blackjack()
     elif players_total < dealers_total:
-        print("Dealer wins!")
+        print("Dealer wins!\n")
         play_blackjack()
     else:
-        print("It's a tie!")
+        print("It's a tie!\n")
         play_blackjack()
 
 
