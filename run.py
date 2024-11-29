@@ -115,7 +115,7 @@ def play_blackjack():
         elif hit_or_stand == 'stand':
             break
         else:
-            print("Invalid input! Please type 'Hit' or 'Stand'.\n")
+            print("\nInvalid input! Please type 'Hit' or 'Stand'.\n")
 
     while calculate_hand_value(dealers_hand) < 17:
         dealers_hand.append(deal_cards(deck))
