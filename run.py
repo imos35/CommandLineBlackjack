@@ -1,5 +1,11 @@
 import random
 
+
+
+
+
+# Deck functions for creating deck, shuffling cards and dealing
+
 def create_deck():
     """
     Creates the deck and the cards values
@@ -39,18 +45,16 @@ def calculate_hand_value(hand):
     return total
 
 
-#def format_hand(hand):
-#    """
-#    Formats a hand for display as a readable string.
-#    """
-#    return "\n  - " + "\n  - ".join(f"{value} of {suit}" for value, suit in hand)
 
+
+
+# ASCII Cards
 
 def ascii_card(value, suit):
     """
     Generates an ASCII representation of a card.
     """
-    # Map suits to their symbols
+
     suit_symbols = {
         'Hearts': '♥',
         'Diamonds': '♦',
@@ -58,7 +62,7 @@ def ascii_card(value, suit):
         'Spades': '♠'
     }
     
-    # Convert values like 11 to 'A' for Ace
+
     if value == 11:
         value = 'A'
     elif value == 10:
@@ -70,7 +74,7 @@ def ascii_card(value, suit):
     elif value == 14:
         value = 'K'
 
-    # Card template
+
     top = " _____ "
     middle = f"|{str(value):<2}   |"
     center = f"|  {suit_symbols[suit]}  |"
@@ -83,25 +87,17 @@ def ascii_hand(hand):
     """
     Generates ASCII art for a hand of cards.
     """
-    # Generate ASCII art for each card
     ascii_cards = [ascii_card(value, suit).split("\n") for value, suit in hand]
 
-    # Combine rows from each card
     combined = ["".join(card_row) for card_row in zip(*ascii_cards)]
 
     return "\n".join(combined)
 
 
-def play_again():
-    while True:
-        play_again = input("Want to play again? Yes or No \n").lower()
-        if play_again == "yes":
-            play_blackjack()
-        elif play_again == "no":
-            print("Thanks for playing! (Run program to play again)\n")
-            break
-        else:
-            print("Invalid input! Please type 'Yes' or 'No' \n")
+
+
+
+# Gameplay mechanics
 
 def play_blackjack():
     """
@@ -136,16 +132,31 @@ def play_blackjack():
     """
     if players_total > 21:
         print("You bust! Dealer wins.\n")
-        play_again()
     elif dealers_total > 21 or players_total > dealers_total:
         print("You win!\n")
-        play_again()
     elif players_total < dealers_total:
         print("Dealer wins!\n")
-        play_again()
     else:
         print("It's a tie!\n")
-        play_again()
 
 
-play_blackjack()
+
+
+
+#Main Loop for game to go around smoothly
+
+def main():
+    while True:
+        play_blackjack()
+        while True:
+            play_again = input("Want to play again? Yes or No \n").lower()
+            if play_again == "yes":
+                break
+            elif play_again == "no":
+                print("\nThanks for playing!\n")
+                return
+            else:
+                print("\nInvalid input! Please type 'Yes' or 'No'.\n")
+
+
+main()
