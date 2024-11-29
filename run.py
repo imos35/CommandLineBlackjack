@@ -92,6 +92,17 @@ def ascii_hand(hand):
     return "\n".join(combined)
 
 
+def play_again():
+    while True:
+        play_again = input("Want to play again? Yes or No \n").lower()
+        if play_again == "yes":
+            play_blackjack()
+        elif play_again == "no":
+            print("Thanks for playing! (Run program to play again)\n")
+            break
+        else:
+            print("Invalid input! Please type 'Yes' or 'No' \n")
+
 def play_blackjack():
     """
     Main game function to play Blackjack
@@ -125,16 +136,16 @@ def play_blackjack():
     """
     if players_total > 21:
         print("You bust! Dealer wins.\n")
-        play_blackjack()
+        play_again()
     elif dealers_total > 21 or players_total > dealers_total:
         print("You win!\n")
-        play_blackjack()
+        play_again()
     elif players_total < dealers_total:
         print("Dealer wins!\n")
-        play_blackjack()
+        play_again()
     else:
         print("It's a tie!\n")
-        play_blackjack()
+        play_again()
 
 
 play_blackjack()
