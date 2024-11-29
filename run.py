@@ -110,7 +110,7 @@ def play_blackjack():
     deck, players_hand, dealers_hand = shuffle_and_deal()
 
     while calculate_hand_value(players_hand) < 21:
-        print(f"Your Hand:\n{ascii_hand(players_hand)}\nTotal: {calculate_hand_value(players_hand)}\n")
+        print(f"\nYour Hand:\n{ascii_hand(players_hand)}\nTotal: {calculate_hand_value(players_hand)}\n")
 
         hit_or_stand = input("Do you want to Hit or Stand?\n").lower()
 
@@ -127,8 +127,8 @@ def play_blackjack():
     players_total = calculate_hand_value(players_hand)
     dealers_total = calculate_hand_value(dealers_hand)
 
-    print(f"Dealer's Hand:\n{ascii_hand(dealers_hand)}\nTotal: {dealers_total} \n")
-    print(f"Your Hand:\n{ascii_hand(players_hand)}\nTotal: {players_total} \n")
+    print(f"\nDealer's Hand:\n{ascii_hand(dealers_hand)}\nTotal: {dealers_total} \n")
+    print(f"\nYour Hand:\n{ascii_hand(players_hand)}\nTotal: {players_total} \n")
 
 
     """
