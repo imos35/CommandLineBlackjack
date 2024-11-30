@@ -1,9 +1,6 @@
 import random
 
 
-
-
-
 # Deck functions for creating deck, shuffling cards and dealing
 
 def create_deck():
@@ -14,12 +11,12 @@ def create_deck():
     suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
     return [(value, suit) for value in values for suit in suits]
 
+
 def deal_cards(deck):
     """
     Deals a card
     """
     return deck.pop()
-
 
 
 def shuffle_and_deal():
@@ -34,6 +31,7 @@ def shuffle_and_deal():
 
     return deck, players_hand, dealers_hand
 
+
 def calculate_hand_value(hand):
     """
     Calculates the value of the hands dealt
@@ -43,9 +41,6 @@ def calculate_hand_value(hand):
         if total > 21 and card[0] == 11:
             total -= 10
     return total
-
-
-
 
 
 # ASCII Cards
@@ -61,7 +56,6 @@ def ascii_card(value, suit):
         'Clubs': '♣',
         'Spades': '♠'
     }
-    
 
     if value == 11:
         value = 'A'
@@ -74,7 +68,6 @@ def ascii_card(value, suit):
     elif value == 14:
         value = 'K'
 
-
     top = " _____ "
     middle = f"|{str(value):<2}   |"
     center = f"|  {suit_symbols[suit]}  |"
@@ -82,6 +75,7 @@ def ascii_card(value, suit):
     base = " ----- "
 
     return "\n".join([top, middle, center, bottom, base])
+
 
 def ascii_hand(hand):
     """
@@ -94,9 +88,6 @@ def ascii_hand(hand):
     return "\n".join(combined)
 
 
-
-
-
 # Gameplay mechanics
 
 def play_blackjack():
@@ -106,7 +97,10 @@ def play_blackjack():
     deck, players_hand, dealers_hand = shuffle_and_deal()
 
     while calculate_hand_value(players_hand) < 21:
-        print(f"\nYour Hand:\n{ascii_hand(players_hand)}\nTotal: {calculate_hand_value(players_hand)}\n")
+        print(
+            f"\nYour Hand:\n{ascii_hand(players_hand)}\n"
+            f"Total: {calculate_hand_value(players_hand)}\n"
+            )
 
         hit_or_stand = input("Do you want to Hit or Stand?\n").lower()
 
@@ -123,9 +117,14 @@ def play_blackjack():
     players_total = calculate_hand_value(players_hand)
     dealers_total = calculate_hand_value(dealers_hand)
 
-    print(f"\nDealer's Hand:\n{ascii_hand(dealers_hand)}\nTotal: {dealers_total} \n")
-    print(f"\nYour Hand:\n{ascii_hand(players_hand)}\nTotal: {players_total} \n")
-
+    print(
+        f"\nDealer's Hand:\n{ascii_hand(dealers_hand)}\n"
+        f"Total: {dealers_total}\n"
+        )
+    print(
+        f"\nYour Hand:\n{ascii_hand(players_hand)}\n"
+        f"Total: {players_total}\n"
+    )
 
     """
     Checks if players win or lose.
@@ -140,10 +139,7 @@ def play_blackjack():
         print("It's a tie!\n")
 
 
-
-
-
-#Main Loop for game to go around smoothly
+# Main Loop for game to go around smoothly
 
 def main():
     while True:
