@@ -112,6 +112,10 @@ This project demonstrates core Python concepts such as loops, functions, conditi
 
     - After deployment, the app was tested on Heroku to confirm that all features worked correctly in the deployed environment. Additional testing ensured no issues arose from Heroku's runtime environment.
 
+    #### Validator - [CI Python Linter](https://pep8ci.herokuapp.com)
+
+    - No errors returned - PEP8
+
     ### Bugs
 
     - Identified and resolved a looping issue that caused the main game methods to run twice. Implemented a restructuring of the game loop to ensure the methods execute only once per round, eliminating the issue and ensuring _no bugs in the final version._
